@@ -34,10 +34,12 @@ const INDONESIAN_CITIES = [
 
 type City = typeof INDONESIAN_CITIES[number]
 
-// Create Neo-Brutalist marker icon
-const createNeoBrutalistIcon = (isSelected: boolean, pollution: 'Bagus' | 'Sedang' | 'Buruk') => {
+// Create Neo-Brutalist marker icon with dynamic sizing
+const createNeoBrutalistIcon = (isSelected: boolean, pollution: 'Bagus' | 'Sedang' | 'Buruk', cityName: string) => {
   const bgColor = isSelected ? '#FFFF00' : pollution === 'Bagus' ? '#22c55e' : pollution === 'Sedang' ? '#eab308' : '#ef4444'
-  const size = isSelected ? 36 : 28
+  const size = isSelected ? 44 : 32
+  const borderWidth = isSelected ? 4 : 3
+  const shadowOffset = isSelected ? 4 : 3
   
   return L.divIcon({
     className: 'neo-brutalist-marker',
@@ -46,18 +48,36 @@ const createNeoBrutalistIcon = (isSelected: boolean, pollution: 'Bagus' | 'Sedan
         width: ${size}px;
         height: ${size}px;
         background-color: ${bgColor};
-        border: 3px solid #000;
-        box-shadow: 3px 3px 0 0 #000;
+        border: ${borderWidth}px solid #0a0a0a;
+        box-shadow: ${shadowOffset}px ${shadowOffset}px 0 0 #0a0a0a;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: bold;
-        font-size: ${isSelected ? '14px' : '10px'};
+        font-weight: 900;
+        font-size: ${isSelected ? '16px' : '12px'};
         transform: translate(-50%, -50%);
-        transition: all 0.2s ease;
+        transition: all 0.15s ease-out;
+        cursor: pointer;
       ">
-        <span style="color: #000;">📍</span>
+        <span style="color: #0a0a0a; line-height: 1;">${isSelected ? '📍' : '●'}</span>
       </div>
+      ${isSelected ? `
+        <div style="
+          position: absolute;
+          top: ${size + 8}px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #FFFF00;
+          border: 3px solid #0a0a0a;
+          box-shadow: 3px 3px 0 0 #0a0a0a;
+          padding: 4px 10px;
+          font-weight: 900;
+          font-size: 12px;
+          white-space: nowrap;
+          color: #0a0a0a;
+          font-family: 'DM Sans', sans-serif;
+        ">${cityName}</div>
+      ` : ''}
     `,
     iconSize: [size, size],
     iconAnchor: [size / 2, size / 2],
@@ -120,7 +140,7 @@ function MapEventsHandler({
         <Marker
           key={city.name}
           position={[city.lat, city.lng]}
-          icon={createNeoBrutalistIcon(selectedCity?.name === city.name, city.pollution)}
+          icon={createNeoBrutalistIcon(selectedCity?.name === city.name, city.pollution, city.name)}
           eventHandlers={{
             click: () => onCitySelect(city),
           }}
@@ -208,36 +228,56 @@ export default function IndonesiaLeafletMap({
         
         .neo-brutalist-popup .leaflet-popup-content-wrapper {
           background: #FFFF00 !important;
-          border: 3px solid #000 !important;
-          box-shadow: 4px 4px 0 0 #000 !important;
+          border: 4px solid #0a0a0a !important;
+          box-shadow: 4px 4px 0 0 #0a0a0a !important;
           border-radius: 0 !important;
         }
         
         .neo-brutalist-popup .leaflet-popup-tip {
           background: #FFFF00 !important;
-          border: 2px solid #000 !important;
-          box-shadow: 2px 2px 0 0 #000 !important;
+          border: 3px solid #0a0a0a !important;
+          box-shadow: 2px 2px 0 0 #0a0a0a !important;
+        }
+
+        .neo-brutalist-popup .leaflet-popup-close-button {
+          color: #0a0a0a !important;
+          font-weight: 900 !important;
+          font-size: 24px !important;
+          width: 28px !important;
+          height: 28px !important;
         }
         
         .leaflet-container {
           font-family: 'DM Sans', sans-serif !important;
+          background: #e5e5e5 !important;
+        }
+
+        .dark .leaflet-container {
+          background: #262626 !important;
         }
         
         .leaflet-control-zoom {
-          border: 3px solid #000 !important;
-          box-shadow: 4px 4px 0 0 #000 !important;
+          border: 4px solid #0a0a0a !important;
+          box-shadow: 4px 4px 0 0 #0a0a0a !important;
+          border-radius: 0 !important;
+          overflow: hidden !important;
         }
         
         .leaflet-control-zoom a {
           background: #FFFF00 !important;
-          color: #000 !important;
-          font-weight: bold !important;
-          border-bottom: 2px solid #000 !important;
+          color: #0a0a0a !important;
+          font-weight: 900 !important;
+          border: none !important;
+          border-bottom: 3px solid #0a0a0a !important;
+          width: 36px !important;
+          height: 36px !important;
+          line-height: 32px !important;
+          font-size: 20px !important;
         }
         
         .leaflet-control-zoom a:hover {
           background: #14b8a6 !important;
-          color: #fff !important;
+          color: #fafafa !important;
         }
         
         .leaflet-control-zoom a:last-child {
@@ -245,10 +285,16 @@ export default function IndonesiaLeafletMap({
         }
         
         .leaflet-control-attribution {
-          background: rgba(255, 255, 0, 0.9) !important;
-          border: 2px solid #000 !important;
-          padding: 2px 6px !important;
-          font-weight: 500 !important;
+          background: #FFFF00 !important;
+          border: 3px solid #0a0a0a !important;
+          padding: 4px 8px !important;
+          font-weight: 700 !important;
+          color: #0a0a0a !important;
+          border-radius: 0 !important;
+        }
+
+        .leaflet-control-attribution a {
+          color: #0a0a0a !important;
         }
       `}</style>
       
@@ -274,20 +320,20 @@ export default function IndonesiaLeafletMap({
       </MapContainer>
       
       {/* Legend overlay */}
-      <div className="absolute bottom-4 left-4 bg-primary border-3 border-border p-3 shadow-[4px_4px_0_0_#000] z-[1000]">
-        <p className="font-bold text-sm text-primary-foreground mb-2">Zoom to see more cities</p>
-        <div className="flex flex-col gap-1 text-xs">
+      <div className="absolute bottom-4 left-4 bg-primary border-4 border-[#0a0a0a] p-4 shadow-[4px_4px_0_0_#0a0a0a] z-[1000]">
+        <p className="font-black text-sm text-[#0a0a0a] mb-3">Zoom to see more cities</p>
+        <div className="flex flex-col gap-2 text-xs">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-[#22c55e] border-2 border-border" />
-            <span className="text-primary-foreground font-medium">Bagus</span>
+            <div className="w-4 h-4 bg-[#22c55e] border-3 border-[#0a0a0a] shadow-[2px_2px_0_0_#0a0a0a]" />
+            <span className="text-[#0a0a0a] font-bold">Bagus</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-[#eab308] border-2 border-border" />
-            <span className="text-primary-foreground font-medium">Sedang</span>
+            <div className="w-4 h-4 bg-[#eab308] border-3 border-[#0a0a0a] shadow-[2px_2px_0_0_#0a0a0a]" />
+            <span className="text-[#0a0a0a] font-bold">Sedang</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-[#ef4444] border-2 border-border" />
-            <span className="text-primary-foreground font-medium">Buruk</span>
+            <div className="w-4 h-4 bg-[#ef4444] border-3 border-[#0a0a0a] shadow-[2px_2px_0_0_#0a0a0a]" />
+            <span className="text-[#0a0a0a] font-bold">Buruk</span>
           </div>
         </div>
       </div>

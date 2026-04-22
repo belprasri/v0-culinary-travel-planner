@@ -49,18 +49,18 @@ export default function CityStatusGrid() {
       {CITIES.map((city) => (
         <div
           key={city.id}
-          className="bg-card text-card-foreground border-4 border-border rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center"
+          className="bg-card text-card-foreground border-4 border-border p-6 shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex flex-col items-center text-center cursor-pointer"
         >
           <div className="text-5xl mb-4">{city.emoji}</div>
-          <h3 className="text-2xl font-bold mb-4 font-serif">{city.name}</h3>
-          <div className="space-y-2 w-full">
-            <div className="flex justify-between items-center">
-              <span className="font-semibold">Restaurants</span>
-              <span className="text-2xl font-bold text-primary">{city.restaurants}</span>
+          <h3 className="text-2xl font-black mb-4 font-serif">{city.name}</h3>
+          <div className="space-y-3 w-full">
+            <div className="flex justify-between items-center p-2 bg-muted border-2 border-border">
+              <span className="font-bold">Restaurants</span>
+              <span className="text-xl font-black text-primary">{city.restaurants}</span>
             </div>
-            <div className="flex justify-between items-center">
-              <span className="font-semibold">Rating</span>
-              <span className="text-xl font-bold text-accent">★ {city.rating}</span>
+            <div className="flex justify-between items-center p-2 bg-muted border-2 border-border">
+              <span className="font-bold">Rating</span>
+              <span className="text-xl font-black text-secondary">★ {city.rating}</span>
             </div>
           </div>
         </div>

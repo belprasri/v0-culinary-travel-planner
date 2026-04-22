@@ -68,7 +68,7 @@ export default function HomeScreen({ onSelectDestination }: HomeScreenProps) {
           <div className="flex justify-center">
             <button
               onClick={() => setShowQuiz(true)}
-              className="px-8 py-4 bg-secondary text-secondary-foreground border-4 border-border font-bold text-lg flex items-center gap-3 shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
+              className="px-8 py-4 bg-secondary text-secondary-foreground border-4 border-border font-black text-lg flex items-center gap-3 shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all"
             >
               <Sparkles size={24} />
               Cari Destinasi dengan AI
@@ -79,16 +79,16 @@ export default function HomeScreen({ onSelectDestination }: HomeScreenProps) {
 
       {/* Destination Cards Grid */}
       <section className="max-w-6xl mx-auto px-4 py-12">
-        <h3 className="text-3xl font-bold font-serif mb-8">Destinasi Unggulan</h3>
+        <h3 className="text-3xl font-black font-serif mb-8">Destinasi Unggulan</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {DESTINATIONS.map((destination) => (
             <button
               key={destination.id}
               onClick={() => onSelectDestination(destination.id)}
-              className="group text-left border-4 border-border overflow-hidden bg-card shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
+              className="group text-left border-4 border-border overflow-hidden bg-card text-card-foreground shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all"
             >
               {/* Image */}
-              <div className="relative w-full h-48 bg-muted overflow-hidden">
+              <div className="relative w-full h-48 bg-muted overflow-hidden border-b-4 border-border">
                 <Image
                   src={destination.image}
                   alt={destination.name}
@@ -99,13 +99,13 @@ export default function HomeScreen({ onSelectDestination }: HomeScreenProps) {
 
               {/* Content */}
               <div className="p-4">
-                <h4 className="text-2xl font-bold font-serif mb-2">{destination.name}</h4>
-                <p className="text-foreground/70 mb-4">{destination.description}</p>
+                <h4 className="text-2xl font-black font-serif mb-2">{destination.name}</h4>
+                <p className="text-muted-foreground mb-4">{destination.description}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold bg-primary text-primary-foreground px-3 py-1 border-2 border-border shadow-[2px_2px_0_0_#000]">
+                  <span className="text-sm font-black bg-primary text-primary-foreground px-3 py-1 border-4 border-border shadow-[3px_3px_0_0] shadow-border">
                     {destination.rating}
                   </span>
-                  <span className="text-sm font-bold text-secondary group-hover:text-secondary">Pelajari &rarr;</span>
+                  <span className="text-sm font-black text-secondary">Pelajari &rarr;</span>
                 </div>
               </div>
             </button>

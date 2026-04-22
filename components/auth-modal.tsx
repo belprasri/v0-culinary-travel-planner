@@ -38,17 +38,15 @@ export default function AuthModal({ isOpen, mode, onClose, onModeChange }: AuthM
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       {/* Modal Container - Neo-Brutalism Style */}
-      <div className="bg-background border-4 border-border rounded-lg w-full max-w-md shadow-2xl" style={{
-        boxShadow: '8px 8px 0px 0px #000'
-      }}>
+      <div className="bg-background text-foreground border-4 border-border w-full max-w-md shadow-[8px_8px_0_0] shadow-border">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b-4 border-border bg-primary text-primary-foreground">
-          <h2 className="text-2xl font-bold font-serif">
+          <h2 className="text-2xl font-black font-serif">
             {mode === 'login' ? 'Masuk' : 'Daftar'}
           </h2>
           <button
             onClick={onClose}
-            className="p-1 hover:bg-primary-foreground/20 rounded transition-colors"
+            className="p-2 bg-secondary text-secondary-foreground border-3 border-border shadow-[2px_2px_0_0] shadow-border hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
             aria-label="Close modal"
           >
             <X size={24} />
@@ -60,50 +58,41 @@ export default function AuthModal({ isOpen, mode, onClose, onModeChange }: AuthM
           {/* Name Field (Register only) */}
           {mode === 'register' && (
             <div className="mb-6">
-              <label className="block text-sm font-bold mb-3">Nama Lengkap</label>
+              <label className="block text-sm font-black mb-3">Nama Lengkap</label>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Masukkan nama lengkap"
                 required={mode === 'register'}
-                className="w-full px-4 py-3 border-4 border-border rounded-lg bg-background text-foreground font-bold placeholder-foreground/50 focus:outline-none focus:ring-0 focus:border-primary transition-colors"
-                style={{
-                  boxShadow: 'inset 2px 2px 0px rgba(0,0,0,0.1)'
-                }}
+                className="w-full px-4 py-3 border-4 border-border bg-card text-foreground font-bold placeholder-muted-foreground focus:outline-none shadow-[4px_4px_0_0] shadow-border focus:shadow-[2px_2px_0_0] focus:shadow-border focus:translate-x-[2px] focus:translate-y-[2px] transition-all"
               />
             </div>
           )}
 
           {/* Email Field */}
           <div className="mb-6">
-            <label className="block text-sm font-bold mb-3">Email</label>
+            <label className="block text-sm font-black mb-3">Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="nama@example.com"
               required
-              className="w-full px-4 py-3 border-4 border-border rounded-lg bg-background text-foreground font-bold placeholder-foreground/50 focus:outline-none focus:ring-0 focus:border-primary transition-colors"
-              style={{
-                boxShadow: 'inset 2px 2px 0px rgba(0,0,0,0.1)'
-              }}
+              className="w-full px-4 py-3 border-4 border-border bg-card text-foreground font-bold placeholder-muted-foreground focus:outline-none shadow-[4px_4px_0_0] shadow-border focus:shadow-[2px_2px_0_0] focus:shadow-border focus:translate-x-[2px] focus:translate-y-[2px] transition-all"
             />
           </div>
 
           {/* Password Field */}
           <div className="mb-8">
-            <label className="block text-sm font-bold mb-3">Password</label>
+            <label className="block text-sm font-black mb-3">Password</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               required
-              className="w-full px-4 py-3 border-4 border-border rounded-lg bg-background text-foreground font-bold placeholder-foreground/50 focus:outline-none focus:ring-0 focus:border-primary transition-colors"
-              style={{
-                boxShadow: 'inset 2px 2px 0px rgba(0,0,0,0.1)'
-              }}
+              className="w-full px-4 py-3 border-4 border-border bg-card text-foreground font-bold placeholder-muted-foreground focus:outline-none shadow-[4px_4px_0_0] shadow-border focus:shadow-[2px_2px_0_0] focus:shadow-border focus:translate-x-[2px] focus:translate-y-[2px] transition-all"
             />
           </div>
 
@@ -111,10 +100,11 @@ export default function AuthModal({ isOpen, mode, onClose, onModeChange }: AuthM
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-4 px-6 bg-secondary text-secondary-foreground border-4 border-border rounded-lg font-bold text-lg mb-4 hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-            style={{
-              boxShadow: isSubmitting ? 'inset 4px 4px 0px rgba(0,0,0,0.2)' : '4px 4px 0px 0px #000'
-            }}
+            className={`w-full py-4 px-6 bg-secondary text-secondary-foreground border-4 border-border font-black text-lg mb-4 transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
+              isSubmitting 
+                ? 'shadow-none translate-x-[4px] translate-y-[4px]' 
+                : 'shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px]'
+            }`}
           >
             {isSubmitting ? 'Loading...' : (mode === 'login' ? 'Masuk' : 'Daftar')}
           </button>
@@ -128,7 +118,7 @@ export default function AuthModal({ isOpen, mode, onClose, onModeChange }: AuthM
               setName('')
               onModeChange(mode === 'login' ? 'register' : 'login')
             }}
-            className="w-full py-2 text-foreground/70 font-bold border-2 border-border rounded-lg hover:bg-muted transition-colors"
+            className="w-full py-3 text-muted-foreground font-black border-4 border-border shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-muted transition-all"
           >
             {mode === 'login' 
               ? 'Belum punya akun? Daftar' 

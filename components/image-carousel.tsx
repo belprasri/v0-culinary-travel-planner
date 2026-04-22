@@ -41,7 +41,7 @@ export default function ImageCarousel() {
   return (
     <div className="relative">
       {/* Image Container */}
-      <div className="relative w-full aspect-video bg-muted border-4 border-border rounded-lg overflow-hidden shadow-lg">
+      <div className="relative w-full aspect-video bg-muted border-4 border-border overflow-hidden shadow-[6px_6px_0_0] shadow-border">
         <Image
           src={current.src}
           alt={current.title}
@@ -50,12 +50,12 @@ export default function ImageCarousel() {
           className="object-cover"
         />
         {/* Overlay with text */}
-        <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
           <div className="text-center">
-            <div className="text-6xl mb-4 font-serif font-bold text-white drop-shadow-lg">
+            <div className="text-6xl mb-4 font-serif font-black text-white drop-shadow-lg" style={{ textShadow: '4px 4px 0 #0a0a0a' }}>
               {current.title.split(' ')[0]}
             </div>
-            <p className="text-xl text-white drop-shadow-md">{current.description}</p>
+            <p className="text-xl font-bold text-white drop-shadow-md">{current.description}</p>
           </div>
         </div>
       </div>
@@ -63,7 +63,7 @@ export default function ImageCarousel() {
       {/* Navigation Buttons */}
       <button
         onClick={goToPrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-primary text-primary-foreground border-4 border-border rounded-full flex items-center justify-center hover:shadow-md transition-shadow font-bold"
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-primary text-primary-foreground border-4 border-border flex items-center justify-center font-black shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
         aria-label="Previous slide"
       >
         <ChevronLeft size={24} />
@@ -71,22 +71,22 @@ export default function ImageCarousel() {
 
       <button
         onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-primary text-primary-foreground border-4 border-border rounded-full flex items-center justify-center hover:shadow-md transition-shadow font-bold"
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-primary text-primary-foreground border-4 border-border flex items-center justify-center font-black shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
         aria-label="Next slide"
       >
         <ChevronRight size={24} />
       </button>
 
       {/* Slide Indicators */}
-      <div className="flex gap-2 justify-center mt-4">
+      <div className="flex gap-3 justify-center mt-6">
         {CAROUSEL_IMAGES.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 border-2 border-border rounded-full transition-all ${
+            className={`h-4 border-3 border-border transition-all shadow-[2px_2px_0_0] shadow-border ${
               index === currentIndex
-                ? 'bg-primary w-6'
-                : 'bg-muted'
+                ? 'bg-primary w-8'
+                : 'bg-muted w-4 hover:bg-secondary'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

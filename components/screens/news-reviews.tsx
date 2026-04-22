@@ -95,7 +95,7 @@ export default function NewsReviews() {
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }).map((_, i) => (
-      <span key={i} className={i < rating ? 'text-yellow-500' : 'text-gray-300'}>
+      <span key={i} className={i < rating ? 'text-primary' : 'text-muted-foreground'}>
         ★
       </span>
     ))
@@ -106,41 +106,41 @@ export default function NewsReviews() {
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h2 className="text-4xl font-bold font-serif mb-2">Berita Terkini</h2>
-          <p className="text-lg text-foreground/70">
+          <h2 className="text-4xl font-black font-serif mb-2">Berita Terkini</h2>
+          <p className="text-lg text-muted-foreground">
             Tetap update dengan berita wisata dan ulasan terbaru dari seluruh Indonesia
           </p>
         </div>
 
         {/* News Grid */}
         <section className="mb-12">
-          <h3 className="text-2xl font-bold font-serif mb-6">Berita Pariwisata</h3>
+          <h3 className="text-2xl font-black font-serif mb-6">Berita Pariwisata</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {news.map((item) => (
               <div
                 key={item.id}
-                className="bg-card border-4 border-border rounded-lg p-6 hover:shadow-md transition-shadow"
+                className="bg-card text-card-foreground border-4 border-border p-6 shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer"
               >
                 {/* Category Badge */}
                 <div className="mb-4">
-                  <span className="inline-block bg-primary text-primary-foreground px-3 py-1 rounded border-2 border-primary font-bold text-sm">
+                  <span className="inline-block bg-primary text-primary-foreground px-3 py-1 border-3 border-border font-black text-sm shadow-[2px_2px_0_0] shadow-border">
                     {item.category}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h4 className="text-xl font-bold font-serif mb-3 line-clamp-2">{item.title}</h4>
+                <h4 className="text-xl font-black font-serif mb-3 line-clamp-2">{item.title}</h4>
 
                 {/* Excerpt */}
-                <p className="text-foreground/70 mb-4 line-clamp-3">{item.excerpt}</p>
+                <p className="text-muted-foreground mb-4 line-clamp-3">{item.excerpt}</p>
 
                 {/* Footer */}
-                <div className="flex items-center justify-between pt-4 border-t-2 border-border">
-                  <div className="flex items-center gap-2 text-sm text-foreground/60">
+                <div className="flex items-center justify-between pt-4 border-t-4 border-border">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground font-bold">
                     <Calendar size={16} />
                     <span>{new Date(item.date).toLocaleDateString('id-ID')}</span>
                   </div>
-                  <div className="flex items-center gap-1 font-bold">
+                  <div className="flex items-center gap-1 font-black">
                     <ThumbsUp size={16} />
                     <span>{item.likes}</span>
                   </div>
@@ -152,38 +152,38 @@ export default function NewsReviews() {
 
         {/* Reviews Section */}
         <section>
-          <h3 className="text-2xl font-bold font-serif mb-6">Ulasan Wisatawan</h3>
+          <h3 className="text-2xl font-black font-serif mb-6">Ulasan Wisatawan</h3>
           <div className="space-y-6">
             {reviews.map((review) => (
               <div
                 key={review.id}
-                className="bg-card border-4 border-border rounded-lg p-6 hover:shadow-md transition-shadow"
+                className="bg-card text-card-foreground border-4 border-border p-6 shadow-[4px_4px_0_0] shadow-border"
               >
                 {/* Header */}
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h4 className="text-lg font-bold">{review.author}</h4>
-                    <p className="text-sm text-foreground/60">
+                    <h4 className="text-lg font-black">{review.author}</h4>
+                    <p className="text-sm text-muted-foreground font-bold">
                       Berlibur ke {review.destination}
                     </p>
                   </div>
                   <div className="text-right">
-                    <div className="flex gap-1 mb-2 justify-end">
+                    <div className="flex gap-1 mb-2 justify-end text-lg">
                       {renderStars(review.rating)}
                     </div>
-                    <span className="text-sm font-bold text-primary">{review.rating}.0 / 5.0</span>
+                    <span className="text-sm font-black text-primary">{review.rating}.0 / 5.0</span>
                   </div>
                 </div>
 
                 {/* Review Text */}
-                <p className="text-foreground/80 mb-4 leading-relaxed">{review.comment}</p>
+                <p className="text-card-foreground mb-4 leading-relaxed">{review.comment}</p>
 
                 {/* Footer */}
-                <div className="flex items-center justify-between pt-4 border-t-2 border-border">
-                  <span className="text-sm text-foreground/60">
+                <div className="flex items-center justify-between pt-4 border-t-4 border-border">
+                  <span className="text-sm text-muted-foreground font-bold">
                     {new Date(review.date).toLocaleDateString('id-ID')}
                   </span>
-                  <div className="flex items-center gap-2 font-bold">
+                  <div className="flex items-center gap-2 font-black">
                     <ThumbsUp size={16} />
                     <span>{review.likes}</span>
                   </div>

@@ -37,7 +37,7 @@ export default function CityDashboard() {
         {/* Main Dashboard */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Interactive Leaflet Map */}
-          <div className="lg:col-span-2 bg-card border-4 border-border p-6 shadow-[4px_4px_0_0_#000]">
+          <div className="lg:col-span-2 bg-card border-4 border-border p-6 shadow-[4px_4px_0_0] shadow-border">
             <h3 className="text-2xl font-bold font-serif mb-4">Peta Indonesia Interaktif</h3>
             <div className="h-[450px] w-full">
               <DynamicIndonesiaMap 
@@ -51,7 +51,7 @@ export default function CityDashboard() {
           </div>
 
           {/* Massive Stats Dashboard */}
-          <div className="bg-card border-4 border-border p-8 shadow-[4px_4px_0_0_#000] flex flex-col justify-between">
+          <div className="bg-card border-4 border-border p-8 shadow-[4px_4px_0_0] shadow-border flex flex-col justify-between">
             <div>
               <h3 className="text-2xl font-bold font-serif mb-8 text-center border-b-4 border-border pb-4">
                 {selectedCity?.name || 'Pilih Kota'}
@@ -61,7 +61,7 @@ export default function CityDashboard() {
                 <>
                   {/* Island Badge */}
                   <div className="text-center mb-6">
-                    <span className="inline-block px-4 py-2 bg-secondary text-secondary-foreground border-3 border-border font-bold shadow-[3px_3px_0_0_#000]">
+                    <span className="inline-block px-4 py-2 bg-secondary text-secondary-foreground border-4 border-border font-black shadow-[4px_4px_0_0] shadow-border">
                       {selectedCity.island}
                     </span>
                   </div>
@@ -76,10 +76,10 @@ export default function CityDashboard() {
                     </div>
                     <div className="text-xl font-bold text-foreground/70">IQAir Index</div>
                     <div
-                      className="inline-block px-6 py-2 mt-4 border-3 border-border font-bold text-lg shadow-[3px_3px_0_0_#000]"
+                      className="inline-block px-6 py-2 mt-4 border-4 border-border font-black text-lg shadow-[4px_4px_0_0] shadow-border"
                       style={{
                         backgroundColor: getPollutionColor(selectedCity.pollution),
-                        color: '#000',
+                        color: '#0a0a0a',
                       }}
                     >
                       {selectedCity.pollution}
@@ -114,10 +114,10 @@ export default function CityDashboard() {
                       const city = INDONESIAN_CITIES.find(c => c.island === island)
                       if (city) setSelectedCity(city)
                     }}
-                    className={`px-3 py-2 border-3 border-border font-bold transition-all shadow-[2px_2px_0_0_#000] hover:shadow-[4px_4px_0_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 ${
+                    className={`px-3 py-2 border-4 border-border font-black transition-all shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] ${
                       selectedCity?.island === island
                         ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted hover:bg-secondary hover:text-secondary-foreground'
+                        : 'bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground'
                     }`}
                   >
                     {island}
@@ -134,10 +134,10 @@ export default function CityDashboard() {
                     <button
                       key={cityName}
                       onClick={() => setSelectedCity(city)}
-                      className={`px-3 py-2 border-3 border-border font-bold transition-all shadow-[2px_2px_0_0_#000] hover:shadow-[4px_4px_0_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 ${
+                      className={`px-3 py-2 border-4 border-border font-black transition-all shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] ${
                         selectedCity?.name === cityName
                           ? 'bg-primary text-primary-foreground'
-                          : 'bg-muted hover:bg-secondary hover:text-secondary-foreground'
+                          : 'bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground'
                       }`}
                     >
                       {cityName}
@@ -150,37 +150,37 @@ export default function CityDashboard() {
         </div>
 
         {/* Legend */}
-        <div className="mt-8 bg-secondary/20 border-4 border-secondary p-6 shadow-[4px_4px_0_0_#000]">
-          <h3 className="text-xl font-bold font-serif mb-4">Panduan Kualitas Udara</h3>
+        <div className="mt-8 bg-secondary/20 border-4 border-border p-6 shadow-[4px_4px_0_0] shadow-border">
+          <h3 className="text-xl font-black font-serif mb-4">Panduan Kualitas Udara</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex items-center gap-3">
               <div
-                className="w-8 h-8 border-3 border-border shadow-[2px_2px_0_0_#000]"
+                className="w-8 h-8 border-4 border-border shadow-[3px_3px_0_0] shadow-border"
                 style={{ backgroundColor: '#22c55e' }}
               />
               <div>
-                <p className="font-bold">Bagus (0-50)</p>
-                <p className="text-sm text-foreground/70">Aman untuk semua aktivitas</p>
+                <p className="font-black">Bagus (0-50)</p>
+                <p className="text-sm text-muted-foreground">Aman untuk semua aktivitas</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <div
-                className="w-8 h-8 border-3 border-border shadow-[2px_2px_0_0_#000]"
+                className="w-8 h-8 border-4 border-border shadow-[3px_3px_0_0] shadow-border"
                 style={{ backgroundColor: '#eab308' }}
               />
               <div>
-                <p className="font-bold">Sedang (50-100)</p>
-                <p className="text-sm text-foreground/70">Batasi aktivitas intensif</p>
+                <p className="font-black">Sedang (50-100)</p>
+                <p className="text-sm text-muted-foreground">Batasi aktivitas intensif</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <div
-                className="w-8 h-8 border-3 border-border shadow-[2px_2px_0_0_#000]"
+                className="w-8 h-8 border-4 border-border shadow-[3px_3px_0_0] shadow-border"
                 style={{ backgroundColor: '#ef4444' }}
               />
               <div>
-                <p className="font-bold">Buruk (100+)</p>
-                <p className="text-sm text-foreground/70">Hindari aktivitas outdoor</p>
+                <p className="font-black">Buruk (100+)</p>
+                <p className="text-sm text-muted-foreground">Hindari aktivitas outdoor</p>
               </div>
             </div>
           </div>
@@ -188,26 +188,26 @@ export default function CityDashboard() {
 
         {/* All Cities Grid */}
         <div className="mt-8">
-          <h3 className="text-2xl font-bold font-serif mb-6">Semua Kota</h3>
+          <h3 className="text-2xl font-black font-serif mb-6">Semua Kota</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {INDONESIAN_CITIES.map((city) => (
               <button
                 key={city.name}
                 onClick={() => setSelectedCity(city)}
-                className={`p-4 border-3 border-border text-left transition-all shadow-[3px_3px_0_0_#000] hover:shadow-[5px_5px_0_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 ${
+                className={`p-4 border-4 border-border text-left transition-all shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] ${
                   selectedCity?.name === city.name
                     ? 'bg-primary text-primary-foreground'
-                    : 'bg-card hover:bg-secondary hover:text-secondary-foreground'
+                    : 'bg-card text-card-foreground hover:bg-secondary hover:text-secondary-foreground'
                 }`}
               >
-                <p className="font-bold text-sm truncate">{city.name}</p>
-                <p className="text-xs opacity-70">{city.island}</p>
+                <p className="font-black text-sm truncate">{city.name}</p>
+                <p className="text-xs text-muted-foreground">{city.island}</p>
                 <div className="flex items-center gap-2 mt-2">
                   <div
-                    className="w-3 h-3 border-2 border-border"
+                    className="w-4 h-4 border-3 border-border shadow-[2px_2px_0_0] shadow-border"
                     style={{ backgroundColor: getPollutionColor(city.pollution) }}
                   />
-                  <span className="text-xs font-medium">AQI: {city.iqair}</span>
+                  <span className="text-xs font-bold">AQI: {city.iqair}</span>
                 </div>
               </button>
             ))}

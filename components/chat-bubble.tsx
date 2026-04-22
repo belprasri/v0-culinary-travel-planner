@@ -15,14 +15,11 @@ export default function ChatBubble({ message, sender, isLoading, children }: Cha
       <div
         className={`${
           children ? 'max-w-2xl' : 'max-w-xs md:max-w-md lg:max-w-lg'
-        } border-4 border-border rounded-2xl font-semibold ${
+        } border-4 border-border font-bold shadow-[4px_4px_0_0] shadow-border ${
           isUser
             ? 'bg-primary text-primary-foreground px-5 py-3'
             : 'bg-card text-card-foreground'
         }`}
-        style={{
-          boxShadow: '4px 4px 0px 0px #000',
-        }}
       >
         {isLoading ? (
           <div className="flex gap-2 py-3 px-5">

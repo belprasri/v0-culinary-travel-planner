@@ -74,15 +74,15 @@ export default function QuizModal({ onClose }: QuizModalProps) {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-background border-4 border-border max-w-2xl w-full shadow-[6px_6px_0_0_#000]">
+      <div className="bg-background text-foreground border-4 border-border max-w-2xl w-full shadow-[8px_8px_0_0] shadow-border">
         {/* Header */}
-        <div className="border-b-4 border-border px-6 py-4 flex items-center justify-between">
-          <h3 className="text-2xl font-bold font-serif">
+        <div className="border-b-4 border-border px-6 py-4 flex items-center justify-between bg-primary">
+          <h3 className="text-2xl font-black font-serif text-primary-foreground">
             Quiz Destinasi AI
           </h3>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-secondary rounded-lg transition-colors"
+            className="p-2 bg-secondary text-secondary-foreground border-3 border-border shadow-[2px_2px_0_0] shadow-border hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
             aria-label="Close"
           >
             <X size={24} />
@@ -108,7 +108,7 @@ export default function QuizModal({ onClose }: QuizModalProps) {
                     {Math.round((current.step / QUIZ_STEPS.length) * 100)}%
                   </span>
                 </div>
-                <div className="w-full h-3 bg-muted border-2 border-border rounded-full overflow-hidden">
+                <div className="w-full h-4 bg-muted border-4 border-border overflow-hidden shadow-[3px_3px_0_0] shadow-border">
                   <div
                     className="h-full bg-primary transition-all"
                     style={{ width: `${(current.step / QUIZ_STEPS.length) * 100}%` }}
@@ -125,10 +125,10 @@ export default function QuizModal({ onClose }: QuizModalProps) {
                   <button
                     key={idx}
                     onClick={() => handleAnswer(option)}
-                    className={`w-full p-4 text-left border-4 border-border font-bold transition-all ${
+                    className={`w-full p-4 text-left border-4 border-border font-black transition-all ${
                       answers[currentStep] === option
-                        ? 'bg-primary text-primary-foreground shadow-[4px_4px_0_0_#000]'
-                        : 'bg-card shadow-[2px_2px_0_0_#000] hover:shadow-[4px_4px_0_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5'
+                        ? 'bg-primary text-primary-foreground shadow-[4px_4px_0_0] shadow-border'
+                        : 'bg-card text-card-foreground shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px]'
                     }`}
                   >
                     {option}
@@ -141,7 +141,7 @@ export default function QuizModal({ onClose }: QuizModalProps) {
                 <button
                   onClick={handleBack}
                   disabled={currentStep === 0}
-                  className="flex items-center gap-2 px-4 py-2 border-4 border-border font-bold disabled:opacity-50 disabled:cursor-not-allowed shadow-[2px_2px_0_0_#000] hover:shadow-[4px_4px_0_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
+                  className="flex items-center gap-2 px-4 py-2 bg-muted text-foreground border-4 border-border font-black disabled:opacity-50 disabled:cursor-not-allowed shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
                 >
                   <ChevronLeft size={20} />
                   Kembali
@@ -149,7 +149,7 @@ export default function QuizModal({ onClose }: QuizModalProps) {
                 <button
                   onClick={handleNext}
                   disabled={!answers[currentStep]}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground border-4 border-border font-bold disabled:opacity-50 disabled:cursor-not-allowed shadow-[3px_3px_0_0_#000] hover:shadow-[5px_5px_0_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground border-4 border-border font-black disabled:opacity-50 disabled:cursor-not-allowed shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all"
                 >
                   {current.step === QUIZ_STEPS.length ? 'Selesai' : 'Lanjut'}
                   {current.step < QUIZ_STEPS.length && <ChevronRight size={20} />}

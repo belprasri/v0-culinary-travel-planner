@@ -118,14 +118,11 @@ export default function ChatbotFAB() {
       {/* FAB Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 w-16 h-16 rounded-full border-4 border-border flex items-center justify-center font-bold text-xl transition-all duration-300 z-50 ${
+        className={`fixed bottom-6 right-6 w-16 h-16 border-4 border-border flex items-center justify-center font-black text-xl transition-all duration-200 z-50 shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] ${
           isOpen
-            ? 'bg-accent text-accent-foreground'
-            : 'bg-primary text-primary-foreground hover:scale-110'
+            ? 'bg-secondary text-secondary-foreground'
+            : 'bg-primary text-primary-foreground'
         }`}
-        style={{
-          boxShadow: '4px 4px 0px 0px #000',
-        }}
         aria-label="Toggle chat"
       >
         {isOpen ? <X size={28} /> : <MessageCircle size={28} />}
@@ -134,15 +131,12 @@ export default function ChatbotFAB() {
       {/* Chat Window */}
       {isOpen && (
         <div
-          className="fixed bottom-24 right-6 w-96 h-[500px] bg-background border-4 border-border rounded-lg flex flex-col overflow-hidden shadow-xl z-50 animate-in slide-in-from-bottom-4 duration-300"
-          style={{
-            boxShadow: '4px 4px 0px 0px #000',
-          }}
+          className="fixed bottom-24 right-6 w-96 h-[500px] bg-background text-foreground border-4 border-border flex flex-col overflow-hidden z-50 animate-in slide-in-from-bottom-4 duration-300 shadow-[8px_8px_0_0] shadow-border"
         >
           {/* Chat Header */}
           <div className="border-b-4 border-border bg-primary text-primary-foreground p-4">
-            <h3 className="font-bold text-lg">🤖 Indo Travel AI</h3>
-            <p className="text-sm opacity-90">Rekomendasi destinasi personal</p>
+            <h3 className="font-black text-lg">Indo Travel AI</h3>
+            <p className="text-sm font-bold opacity-90">Rekomendasi destinasi personal</p>
           </div>
 
           {/* Messages Area */}
@@ -186,13 +180,13 @@ export default function ChatbotFAB() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Tanya rekomendasi..."
-                className="flex-1 px-4 py-2 border-4 border-border rounded-lg bg-card text-foreground placeholder-muted-foreground font-semibold focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                className="flex-1 px-4 py-2 border-4 border-border bg-card text-foreground placeholder-muted-foreground font-bold focus:outline-none shadow-[4px_4px_0_0] shadow-border focus:shadow-[2px_2px_0_0] focus:shadow-border focus:translate-x-[2px] focus:translate-y-[2px] transition-all text-sm"
                 disabled={isLoading}
               />
               <button
                 type="submit"
                 disabled={isLoading || !inputValue.trim()}
-                className="px-4 py-2 bg-secondary text-secondary-foreground border-4 border-border font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[4px_4px_0_0_#000] hover:shadow-[5px_5px_0_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5"
+                className="px-4 py-2 bg-secondary text-secondary-foreground border-4 border-border font-black transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
               >
                 <Send size={18} />
               </button>

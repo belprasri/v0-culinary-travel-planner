@@ -31,14 +31,11 @@ export default function Navbar({ currentScreen, onScreenChange }: NavbarProps) {
                 <button
                   key={item.id}
                   onClick={() => onScreenChange(item.id as any)}
-                  className={`flex-1 min-w-[140px] flex items-center justify-center gap-2 py-3 px-4 border-4 border-border rounded-lg font-bold transition-all ${
+                  className={`flex-1 min-w-[140px] flex items-center justify-center gap-2 py-3 px-4 border-4 border-border font-black transition-all shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] ${
                     isActive
                       ? 'bg-primary text-primary-foreground'
-                      : 'bg-secondary text-secondary-foreground hover:shadow-sm'
+                      : 'bg-secondary text-secondary-foreground'
                   }`}
-                  style={{
-                    boxShadow: isActive ? '4px 4px 0px 0px #000' : 'none'
-                  }}
                 >
                   <Icon size={20} />
                   <span className="text-sm">{item.label}</span>
@@ -52,10 +49,7 @@ export default function Navbar({ currentScreen, onScreenChange }: NavbarProps) {
                 setAuthMode('login')
                 setAuthModalOpen(true)
               }}
-              className="flex items-center justify-center gap-2 py-3 px-4 bg-accent text-accent-foreground border-4 border-border rounded-lg font-bold hover:shadow-sm transition-all"
-              style={{
-                boxShadow: '4px 4px 0px 0px #000'
-              }}
+              className="flex items-center justify-center gap-2 py-3 px-4 bg-secondary text-secondary-foreground border-4 border-border font-black transition-all shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
             >
               <LogIn size={20} />
               <span className="text-sm hidden sm:inline">Masuk</span>
@@ -66,10 +60,7 @@ export default function Navbar({ currentScreen, onScreenChange }: NavbarProps) {
                 setAuthMode('register')
                 setAuthModalOpen(true)
               }}
-              className="flex items-center justify-center gap-2 py-3 px-4 bg-primary text-primary-foreground border-4 border-border rounded-lg font-bold hover:shadow-sm transition-all"
-              style={{
-                boxShadow: '4px 4px 0px 0px #000'
-              }}
+              className="flex items-center justify-center gap-2 py-3 px-4 bg-primary text-primary-foreground border-4 border-border font-black transition-all shadow-[4px_4px_0_0] shadow-border hover:shadow-[2px_2px_0_0] hover:shadow-border hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
             >
               <UserPlus size={20} />
               <span className="text-sm hidden sm:inline">Daftar</span>
